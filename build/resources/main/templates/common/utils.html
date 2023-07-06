@@ -1,0 +1,30 @@
+<form th:fragment="buscar(action, parametroDefault)" class="form-inline container" action="#" th:action="${action}" role="form">
+    <div class="row">
+        <div class="col-10">
+            <input type="text" class="form-control" placeholder="Puesto" aria-label="Puesto" th:value="${parametroDefault}" name="q" required>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Buscar vacantes</button>
+        </div>
+    </div>
+</form>
+
+
+<form th:fragment="dropdownBusqueda(action, lista, titulo, p)" class="btn-group col-2"  th:action="${action}">
+    <button type="button" class="btn btn-primary btn-options"><small th:text="${titulo}"></small></button>
+    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split btn-options"
+            data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" >
+        <li th:each="item : ${lista}">
+            <input class="form-check-input" type="radio" th:name="${p}" th:value="${item.nombre}" th:text="${item.nombre}">
+        </li>
+        <li >
+            <hr class="dropdown-divider">
+        </li>
+        <button type="reset" class="btn btn-outline-secondary btn-sm">Limpiar</button>
+        <button type="submit" class="btn btn-primary btn-sm">Aplicar</button>
+    </ul>
+
+</form>

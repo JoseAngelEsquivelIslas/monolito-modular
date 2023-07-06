@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es_MX" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="common/cdn-bootstrap::head"></head>
+<body>
+<main class="d-grid gap-3">
+    <nav th:replace="common/cdn-bootstrap::menu"></nav>
+
+    <div class="container">
+        <h1>Buscar</h1>
+        <form th:replace="common/utils::buscar(@{/vacantes}, ${''})"></form>
+        <hr>
+    </div>
+
+</main>
+</body>
+</html>

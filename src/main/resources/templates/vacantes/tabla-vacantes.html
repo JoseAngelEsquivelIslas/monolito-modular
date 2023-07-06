@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es_MX" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<div th:replace="common/cdn-bootstrap::head"></div>
+<body>
+<main class="d-grid gap-3">
+    <nav th:replace="common/cdn-bootstrap::menu"></nav>
+
+    <form th:replace="common/utils::buscar(@{/vacantes}, ${qryConsultado})"></form>
+
+    <div class="container">
+        <div class="row">
+            <div th:replace="common/utils::dropdownBusqueda(@{/vacantes}, ${listaSalario}, ${salarioSelect}, ${'s'})"></div>
+            <div th:replace="common/utils::dropdownBusqueda(@{/vacantes}, ${listaFechas}, ${fechaSelect}, ${'f'})"></div>
+            <div th:replace="common/utils::dropdownBusqueda(@{/vacantes}, ${listaCategorias},${categoriaSelect}, ${'c'})"></div>
+            <div th:replace="common/utils::dropdownBusqueda(@{/vacantes}, ${listaTipoContratacion}, ${contratacionSelect}, ${'t'})"></div>
+            <div th:replace="common/utils::dropdownBusqueda(@{/vacantes}, ${listaEstados}, ${estadoSelect}, ${'e'})"></div>
+        </div>
+
+        <div class="container">
+            <hr>
+            <div class="row" th:if="${!listaVacantes.isEmpty()}">
+                <div class="col-4">
+                    <div th:each="vacante : ${listaVacantes}" style="padding-bottom: 5px">
+                        <div class="card">
+                            <a href="#" class="btn btn btn-fix text-left">
+                                <div class="container">
+                                    <div class="card-text">
+                                        <small class="text-muted"
+                                               th:text="' ' + ${#temporals.dayOfWeek(vacante.fechaPublicacion)}"></small>
+                                        <small class="text-muted"
+                                               th:text="' de ' + ${#temporals.monthName(vacante.fechaPublicacion)}"></small>
+                                        <small class="text-muted"
+                                               th:text="' del ' + ${#temporals.year(vacante.fechaPublicacion)}"></small>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <strong><h4 class="card-title" th:text="${vacante.perfil}"></h4></strong>
+                                    <p th:text="${vacante.rangoSalarial}">$25,000 - $30,000</p>
+                                    <ul>
+                                        <li>Algo</li>
+                                        <li>Algo</li>
+                                        <li>Algo</li>
+                                    </ul>
+                                    <p class="card-text" th:text="${vacante.descripcionVacante}">Some quick example text
+                                        to
+                                        build on the
+                                        card title and make up the bulk of the card's content.</p>
+                                    <strong><p th:text="${vacante.fkEstado.nombre}">CDMX</p></strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8" style="text-align: center">
+                    <h3>Encontramos estas vacantes de acuerdo a tu búsqueda</h3>
+                    <p>Selecciona una de la lista para visualizar su información.</p>
+                </div>
+            </div>
+            <div th:unless="${!listaVacantes.isEmpty()}" class="text-center">
+                <span>No se encontraron vacantes</span>
+            </div>
+
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es_MX" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<div th:replace="common/cdn-bootstrap::head"></div>
+<body>
+<main class="d-grid gap-3">
+    <nav th:replace="common/cdn-bootstrap::menu"></nav>
+    <div class="container">
+        <h2>Nueva Vacante</h2>
+        <hr>
+        <br>
+        <form role="form" method="post" th:action="@{/vacantes/nueva}">
+            <div class="row">
+                <div class="mb-3 col-4">
+                    <label for="perfil" class="form-label">Perfil</label>
+                    <input type="text" class="form-control" name="perfil" id="perfil" placeholder="Desarrollador Backend"  th:required="required">
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="tipoContrato" class="form-label">Tipo de contrato</label>
+                    <select class="form-select" name="tipoContrato" id="tipoContrato"  th:required="required">
+                        <option
+                                th:each="tipoContrato : ${listaTipoContratacion}"
+                                th:value="${tipoContrato.nombre}"
+                                th:text="${tipoContrato.nombre}">
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="educacionMinimaRequerida" class="form-label">Educacion minima requerida</label>
+                    <select class="form-select" name="educacionMinimaRequerida" id="educacionMinimaRequerida"  th:required="required">
+                        <option
+                                th:each="educacionMinima : ${listaEducacionMinima}"
+                                th:value="${educacionMinima.nombre}"
+                                th:text="${educacionMinima.nombre}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label for="categoria" class="form-label">Categoria</label>
+                    <select class="form-select" name="categoria" id="categoria"  th:required="required">
+                        <option
+                                th:each="categoria : ${listaCategoria}"
+                                th:value="${categoria.nombre}"
+                                th:text="${categoria.nombre}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label for="espacioTrabajo" class="form-label">Espacio de trabajo</label>
+                    <select class="form-select" name="espacioTrabajo" id="espacioTrabajo"  th:required="required">
+                        <option
+                                th:each="espacioTrabajo : ${listaEspacioTrabajo}"
+                                th:value="${espacioTrabajo.nombre}"
+                                th:text="${espacioTrabajo.nombre}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label for="rangoSalarial" class="form-label">Rango Salarial</label>
+                    <select class="form-select" name="rangoSalarial" id="rangoSalarial"  th:required="required">
+                        <option
+                                th:each="rangoSalarial : ${listaRangoSalarial}"
+                                th:value="${rangoSalarial.nombre}"
+                                th:text="${rangoSalarial.nombre}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label for="fkEstado" class="form-label">Estado</label>
+                    <select class="form-select" name="fkEstado" id="fkEstado"  th:required="required">
+                        <option
+                                th:each="estado : ${listaEstado}"
+                                th:value="${estado.id}"
+                                th:text="${estado.nombre}">
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="horarioEntrada" class="form-label">Hora de entrada</label>
+                    <input type="text" class="form-control" name="horarioEntrada" id="horarioEntrada"
+                           placeholder="08:30 am"  th:required="required">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="horarioSalida" class="form-label">Hora de salida</label>
+                    <input type="text" class="form-control" name="horarioSalida" id="horarioSalida" placeholder="05:30 pm"  th:required="required">
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="descripcionVacante" class="form-label">Descripcion de la Vacante</label>
+                    <textarea class="form-control" name="descripcionVacante" id="descripcionVacante" rows="3"  th:required="required"></textarea>
+                </div>
+                <div style="text-align: right; margin-top: 30px">
+                    <a type="button" class="btn btn-outline-secondary" th:href="@{/}">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </form>
+
+        <br>
+
+
+    </div>
+</main>
+</body>
+</html>
